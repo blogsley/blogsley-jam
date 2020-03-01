@@ -1,0 +1,49 @@
+// Set your colors
+$primary: #141618;
+$primary-invert: findColorInvert($primary);
+
+$success: #18453B;
+$success-invert: findColorInvert($success);
+
+$msu-green: #18453B;
+$msu-green-invert: findColorInvert($msu-green);
+
+$neon-green: #39ff14;
+$magenta: magenta;
+$magenta-invert: findColorInvert($magenta);
+
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+    "twitter": ($twitter, $twitter-invert)
+);
+
+$family-sans-serif: 'Poppins', sans-serif;
+
+$body-background-color: $primary;
+$body-color: white;
+
+$footer-background-color: $primary;
+$footer-color: #b5b3b3;
+// Links
+$text: white;
+$link: #dcdbdb;
+$link-invert: $magenta-invert;
+$link-hover: white;
+//$link-focus-border: $primary;
+$link-focus-border: $black;
+//
+$variable-columns: false;
+
+$label-color: white;
