@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import HeroBanner from '~/components/HeroBanner'
+import HeroBanner from '@/components/HeroBanner'
 export default {
   components: {
     HeroBanner

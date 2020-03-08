@@ -16,6 +16,7 @@ import ProjectPreview from './components/ProjectPreview.vue'
 import Projects from './components/Projects.vue'
 import Fluid from './components/Fluid.vue'
 import Icon from 'vue-awesome/components/Icon.vue'
+import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false;
 
@@ -28,10 +29,15 @@ Vue.component('Articles', Articles)
 Vue.component('ProjectPreview', ProjectPreview)
 Vue.component('Projects', Projects)
 Vue.component('v-icon', Icon)
-Vue.component('Fluid', Fluid)
+Vue.component('Fluid', Fluid);
+
+(window as any).snapSaveState = () => {
+  (document as any).querySelector("#app").setAttribute("data-server-rendered", "true");
+};
 
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  apolloProvider: createProvider(),
+  render: (h) => h(App)
 }).$mount('#app');

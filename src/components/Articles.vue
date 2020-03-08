@@ -1,33 +1,40 @@
 <template>
   <div class="section">
     <ul class="article-list">
-      <li v-for="edge in $static.posts.edges" :key="edge.id">
+      <li v-for="edge in allPosts.edges" :key="edge.id">
         <ArticlePreview :article="edge.node" />
       </li>
     </ul>
   </div>
 </template>
-<static-query>
-  query HomeQuery {
-    posts: allPost {
-      edges {
-        node {
-          title
-          description
-          slug
-          date(format: "MMMM Do, YYYY")
-          tags
-          cover
-          description
+
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import gql from 'graphql-tag'
+
+@Component({
+  apollo: {
+      allPosts: {
+      query: gql`
+        query postQuery {
+          allPosts {
+            edges {
+              node {
+                id
+                title
+                slug
+              }
+            }
+          }
         }
+`,
+        prefetch: true,
+        fetchPolicy: 'network-only',
       }
     }
-  }
-</static-query>
-<script>
-
-export default {
-  components: {
-  },
-};
+})
+export default class Articles extends Vue {
+  allPosts = []
+}
 </script>

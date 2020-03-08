@@ -5,15 +5,24 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "postbuild": "react-snap",
     "lint": "vue-cli-service lint"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    }
   },
   "dependencies": {
     "buefy": "^0.8.12",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.11",
+    "vue-apollo": "^3.0.0-beta.11",
     "vue-awesome": "^4.0.2",
-    "vue-class-component": "^7.2.2",
+    "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
@@ -33,9 +42,13 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-vue": "^6.1.2",
+    "graphql-tag": "^2.9.0",
+    "react-snap": "^1.23.0",
+    "reflect-metadata": "^0.1.13",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
     "typescript": "~3.7.5",
+    "vue-cli-plugin-apollo": "~0.21.3",
     "vue-template-compiler": "^2.6.11"
   }
 }

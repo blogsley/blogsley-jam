@@ -1,3 +1,10 @@
+li > p,
+li > ol,
+li > ul {
+  display: inline-block;
+  margin-bottom: 0em;
+}
+
 .container {
   max-width: 1200px !important;
 }

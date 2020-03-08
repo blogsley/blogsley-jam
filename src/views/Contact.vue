@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -40,10 +39,9 @@ export default {
       message: ''
     }
   },
-  mounted () {
-  },
   methods: {
     handleSubmit () {
+      /*eslint consistent-this: ["error", "self"]*/
       const self = this
       const payload = {
         subject: this.subject,
@@ -67,18 +65,6 @@ export default {
         console.log(error)
         self.$router.push('/oops')
       })
-
-          /*
-      axios.post(url, payload)
-        .then(() => {
-          console.log('contact success')
-          self.$router.push('/thanks')
-        })
-        .catch(function (error) {
-          console.log(error)
-          self.$router.push('/oops')
-        })
-      */
     }
   }
 }
