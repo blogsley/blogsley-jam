@@ -1,1 +1,1 @@
-blogsley-cli==0.0.1
+blogsley-cli==0.1.20a1.dev28
