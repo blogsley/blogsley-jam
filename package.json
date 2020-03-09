@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "./postinstall.sh",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "postbuild": "react-snap",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "clean": "rimraf ./dist/",
+    "build-client": "vue-cli-service build",
+    "build-server": "blogsley serve &",
+    "build-all": "run-p build-server build-client",
+    "build": "run-s clean build-all",
+    "snap": "react-snap",
+    "stop": "kill -9 $(pgrep blogsley)",
+    "postbuild": "run-s snap stop"
   },
   "reactSnap": {
     "source": "dist",
@@ -43,6 +50,7 @@
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-vue": "^6.1.2",
     "graphql-tag": "^2.9.0",
+    "npm-run-all": "^4.1.5",
     "react-snap": "^1.23.0",
     "reflect-metadata": "^0.1.13",
     "sass": "^1.25.0",
