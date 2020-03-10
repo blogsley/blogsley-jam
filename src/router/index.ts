@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { loadState } from '../vue-apollo'
 import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
@@ -23,6 +24,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeResolve((to, from, next) => {
+  loadState();
+  next()
 });
 
 export default router;

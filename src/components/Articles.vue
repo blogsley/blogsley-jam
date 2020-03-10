@@ -29,12 +29,13 @@ import gql from 'graphql-tag'
           }
         }
 `,
-        prefetch: true,
-        fetchPolicy: 'network-only',
       }
     }
 })
 export default class Articles extends Vue {
   allPosts = []
+  created () {
+    console.log('mounted')
+  }
 }
 </script>

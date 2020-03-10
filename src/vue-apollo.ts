@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 
-import { ApolloClient } from 'apollo-client'
+import { ApolloClient, DefaultOptions } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 // import { HttpLink } from 'apollo-link-http'
 import { createHttpLink } from 'apollo-link-http'
@@ -11,14 +11,26 @@ import { setContext } from 'apollo-link-context'
 
 Vue.use(VueApollo)
 
-const defaultOptions = {
+declare global {
+  interface Window {
+    __APOLLO_STORE__: any;
+    snapSaveState(): any;
+  } /*
+  interface Document {    
+  } */
+}
+
+/* (window as any).snapSaveState = () => {
+  (document as any).querySelector("div#app").setAttribute("data-server-rendered", "true");
+}; */
+
+const defaultOptions: DefaultOptions = {
   watchQuery: {
     fetchPolicy: 'cache-and-network',
     errorPolicy: 'ignore'
   },
   query: {
-    // fetchPolicy: 'network-only',
-    fetchPolicy: 'cache-and-network',
+    fetchPolicy: 'cache-first',
     errorPolicy: 'all'
   },
   mutate: {
@@ -28,22 +40,20 @@ const defaultOptions = {
   }
 }
 
-const cache = new InMemoryCache({
-  // cacheRedirects: resolvers
-})
+const cache = new InMemoryCache()
 
-cache.writeData({
-  data: {
-    allPosts: [
-      {
-        __typename: 'Item',
-        id: 'dqdBHJGgjgjg',
-        text: 'test',
-        done: true
-      }
-    ]
-  }
-})
+export function loadState() {
+// Grab the state from a global variable injected into the server-generated HTML
+const preloadedState = window.__APOLLO_STORE__
+
+// Allow the passed state to be garbage-collected
+// delete window.__APOLLO_STORE__
+
+  // cache.writeData(preloadedState)
+  cache.restore(preloadedState)
+  console.log('preloadedState')
+  console.log(preloadedState)
+}
 
 const createClient = function () {
   const httpLink = createHttpLink({
@@ -65,6 +75,7 @@ const createClient = function () {
   })
 
   const client = new ApolloClient({
+    // defaultOptions,
     // link: authLink.concat(httpLink),
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
@@ -77,18 +88,29 @@ const createClient = function () {
         }
         if (networkError) console.log(`[Network error]: ${networkError}`)
       }),
-      authLink.concat(httpLink)
+      // authLink.concat(httpLink)
+      httpLink
     ]),
 
-    cache: new InMemoryCache()
+    cache,
   })
 
-  // client.defaultOptions = defaultOptions
   return client
 }
 
 export function createProvider (options = {}) {
   const client = createClient()
+
+    // Tell react-snap how to save state
+  /*
+  window.snapSaveState = () => ({
+    "__APOLLO_STORE__": client.cache.extract()
+  });
+*/
+  window.snapSaveState = () => {
+    (document as any).querySelector("div#app").setAttribute("data-server-rendered", "true");
+    return { "__APOLLO_STORE__": client.cache.extract() }
+  };
 
   const apolloProvider = new VueApollo({
     defaultClient: client

@@ -24,6 +24,7 @@ import gql from 'graphql-tag'
   props: ['slug'],
   data: function (){ return{ post: {}}},
   apollo: {
+    $skipAll () { return navigator.userAgent !== "ReactSnap"},
     postBy: {
       query: gql`
         query postQuery($slug: String!) {

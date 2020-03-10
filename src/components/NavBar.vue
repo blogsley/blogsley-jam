@@ -3,7 +3,7 @@
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link class="navbar-item" to="/">
-          <img alt class="nav-logo" src="/logos/only-logo.svg">
+          <v-icon name="cloud-moon" scale="4"/>
           <span style="font-size: 1.5em">KFields</span>
         </router-link>
         
@@ -20,7 +20,7 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-
+        <div class="navbar-end">
       <div id="navbarBasicExample" class="navbar-menu" ref="navMenu">
         <div class="navbar-start">
           <router-link class="navbar-item" to="/blog">Blog</router-link>
@@ -31,7 +31,6 @@
           <a class="navbar-item" href="https://github.com/kfields/kfields.netlify.com/issues">Report an issue</a>
         </div>
 
-        <div class="navbar-end">
             <a class="navbar-item" href="https://github.com/kfields">
               <v-icon name="brands/github" scale="2"/>
             </a>
@@ -52,6 +51,7 @@ query Home {
 -->
 <script>
 import "vue-awesome/icons/brands/github";
+import "vue-awesome/icons/cloud-moon";
 
 export default {
   name: "NavBar",

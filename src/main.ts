@@ -3,6 +3,7 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
+import { createProvider } from './vue-apollo'
 
 import Buefy from 'buefy'
 import './assets/index.scss'
@@ -16,7 +17,6 @@ import ProjectPreview from './components/ProjectPreview.vue'
 import Projects from './components/Projects.vue'
 import Fluid from './components/Fluid.vue'
 import Icon from 'vue-awesome/components/Icon.vue'
-import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false;
 
@@ -31,13 +31,15 @@ Vue.component('Projects', Projects)
 Vue.component('v-icon', Icon)
 Vue.component('Fluid', Fluid);
 
-(window as any).snapSaveState = () => {
-  (document as any).querySelector("#app").setAttribute("data-server-rendered", "true");
-};
+const apolloProvider = createProvider();
 
-new Vue({
+const app = new Vue({
   router,
   store,
-  apolloProvider: createProvider(),
+  apolloProvider,
   render: (h) => h(App)
-}).$mount('#app');
+});
+
+// app.$mount('#app')
+// Force hydration of the app
+app.$mount('#app', true)
