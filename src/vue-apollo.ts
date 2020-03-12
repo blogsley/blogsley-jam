@@ -49,7 +49,6 @@ const preloadedState = window.__APOLLO_STORE__
 // Allow the passed state to be garbage-collected
 // delete window.__APOLLO_STORE__
 
-  // cache.writeData(preloadedState)
   cache.restore(preloadedState)
   console.log('preloadedState')
   console.log(preloadedState)

@@ -6,10 +6,10 @@
       -->
       <div class="section">
         <div>
-          <h1>{{post.title}}</h1>
+          <h1>{{postBy.title}}</h1>
           <!-- <p style="display: block">{{$page.post.date}}</p> -->
         </div>
-        <div v-html="post.body" class="darkdown-body"/>
+        <div v-html="postBy.body" class="darkdown-body"/>
       </div>
     </article>
   </Layout>
@@ -22,9 +22,7 @@ import gql from 'graphql-tag'
 
 @Component({
   props: ['slug'],
-  data: function (){ return{ post: {}}},
   apollo: {
-    $skipAll () { return navigator.userAgent !== "ReactSnap"},
     postBy: {
       query: gql`
         query postQuery($slug: String!) {
@@ -38,12 +36,6 @@ import gql from 'graphql-tag'
         return {
           slug: this.slug
         }
-      },
-      update (data) {
-        const post = data.postBy
-        console.log(post)
-        this.post = post
-        return post
       }
     }
   },

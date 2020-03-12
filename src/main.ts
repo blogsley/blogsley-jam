@@ -40,6 +40,6 @@ const app = new Vue({
   render: (h) => h(App)
 });
 
-// app.$mount('#app')
+app.$mount('#app')
 // Force hydration of the app
-app.$mount('#app', true)
+// app.$mount('#app', true)

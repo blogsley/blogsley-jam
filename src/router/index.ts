@@ -25,10 +25,44 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
+/*
 router.beforeResolve((to, from, next) => {
   loadState();
   next()
+});
+*/
+
+router.beforeEach((to, from, next) => {
+  if(process.env.NODE_ENV === 'development' || navigator.userAgent === 'ReactSnap') {
+    return next();
+  }
+  console.log('toPath')
+  console.log(to.fullPath)
+  const statePath: string = to.fullPath === '/' ?  `${window.location.origin}/index.json` : to.fullPath + '/index.json';
+  console.log('statePath')
+  console.log(statePath)
+
+  // const statePath: string = to.fullPath;
+  fetch(statePath)
+  .then((response) => {
+    return response.json();
+  })
+  .then((state) => {
+    console.log()
+    console.log(state);
+    if (
+      Object.keys(state).length !== 0
+    ) {
+      Object.assign(window, state)
+    }
+
+    loadState();
+    next();
+  }).catch(function (error) {
+    console.log(error)
+    loadState();
+    next();
+  });
 });
 
 export default router;
