@@ -1,4 +1,6 @@
-# blogsley-jam :guitar:
+# blogsley-jam/client :guitar:
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/401c7040-c4ce-4c9a-baeb-c0f2f82ea4a4/deploy-status)](https://app.netlify.com/sites/blogsley-jam/deploys)
 
 ## Project setup
 ```

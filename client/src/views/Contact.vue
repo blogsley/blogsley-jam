@@ -53,7 +53,7 @@ export default {
       const url = process.env.GRIDFUL_CONTACTHOOK
       console.log(url)
       // return
-      fetch(process.env.GRIDFUL_CONTACTHOOK, {
+      fetch(process.env.VUE_APP_CONTACTHOOK, {
         method: 'post',
         body: JSON.stringify(payload)
       }).then(function(response) {
