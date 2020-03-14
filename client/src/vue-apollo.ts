@@ -55,9 +55,10 @@ const preloadedState = window.__APOLLO_STORE__
 }
 
 const createClient = function () {
+  const serverUrl = process.env.VUE_APP_SERVER_URL;
+  console.log(serverUrl);
   const httpLink = createHttpLink({
-    // uri: process.env.SERVER_URL + '/graphql/'
-    uri: 'http://localhost:5000/graphql/'
+    uri: serverUrl + '/graphql/'
   })
 
   const authLink = setContext((_, { headers }) => {
