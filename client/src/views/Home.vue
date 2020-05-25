@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <HeroBanner>
-      <h1>Code, Jam, Repeat</h1>
+      <h1>Web Publishing Evolved</h1>
     </HeroBanner>
     <main class="landing-main">
       <div class="columns is-gapless">
@@ -37,25 +37,24 @@ export default {
 </script>
 
 <style lang="scss">
-/*
-.landing-main {
-  position: relative;
-}
-*/
+
 .landing-title {
   font-size: 2em;
   white-space: nowrap;
   opacity: .5;
 }
 @media only screen  and (min-width : 1224px) {
+  .landing-main {
+    min-height: 512px;
+  }
   .landing-title {
     font-size: 3em;
     transform: rotate(-90deg);
-    position: absolute;
-    top: 256px;
+    // position: absolute;
+    // top: 256px;
 
     // transform-origin: 0 0;
-    // padding-top: 3em;
+    padding-top: 3em;
     // padding-left: 1em;
   }
 }

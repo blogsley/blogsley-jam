@@ -4,7 +4,7 @@
       <div class="navbar-brand">
         <router-link class="navbar-item" to="/">
           <v-icon name="cloud-moon" scale="4"/>
-          <span style="font-size: 1.5em">KFields</span>
+          <span style="font-size: 1.5em">Blogsley</span>
         </router-link>
         
         <a
@@ -28,10 +28,10 @@
           <router-link class="navbar-item" to="/about">About</router-link>
           <router-link class="navbar-item" to="/contact">Contact</router-link>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="https://github.com/kfields/kfields.netlify.com/issues">Report an issue</a>
+          <a class="navbar-item" href="https://github.com/blogsley/blogsley-jam/issues">Report an issue</a>
         </div>
 
-            <a class="navbar-item" href="https://github.com/kfields">
+            <a class="navbar-item" href="https://github.com/blogsley/blogsley-jam">
               <v-icon name="brands/github" scale="2"/>
             </a>
         </div>
