@@ -1,1 +1,1 @@
-web: flask db upgrade; blogsley run"
+web: flask db upgrade; blogsley run
