@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn "blogsley:create_app()"
+web: flask db upgrade; blogsley run"
