@@ -13,5 +13,4 @@ rm share/blogsley-jam/blogsley.db
 flask db migrate
 flask db upgrade
 
-#python blogsley_flask/command/populate.py
 blogsley populate
