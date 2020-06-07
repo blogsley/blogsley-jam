@@ -1,1 +1,1 @@
-web: flask db upgrade; blogsley --port 80 run
+web: flask db upgrade; blogsley run
