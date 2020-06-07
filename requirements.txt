@@ -1,1 +1,1 @@
-git+git://github.com/blogsley/blogsley-flask#egg=blogsley-flask
+git+git://github.com/blogsley/blogsley-flask.git
